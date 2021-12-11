@@ -1,9 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {Link} from "react-router-dom";
 import userService from '../../services/users-service';
 import Header from "../partials/header";
-import Footer from "../partials/footer";
-import {Button} from "react-bootstrap";
 
 class Login extends React.Component {
 
@@ -20,9 +18,9 @@ class Login extends React.Component {
     }
 
     login = (user) => {
-        userService.login(user)
-            .then(actualUser => {
-                if(actualUser === 0) {
+        const user_login = userService.login(user);
+        user_login.then(actualUser => {
+                if (Object.keys(actualUser).length === 0) {
                     alert("You are not the user of MealForToday.\n Please register first!")
                 } else if (actualUser === 1) {
                     alert("Wrong password!")
@@ -63,7 +61,9 @@ class Login extends React.Component {
                         <label className="col-sm-2 col-form-label"/>
                         <div className="col-sm-12">
                             <button className="btn btn-primary form-control"
-                                    onClick={() => this.login(this.state)}>
+                                    onClick={() => {
+                                        this.login(this.state);
+                                    }}>
                                 Login
 
                             </button>

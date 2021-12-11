@@ -5,7 +5,7 @@ import Login from "./components/cookie/login";
 import SearchMeals from "./components/search/search_meal";
 import MealDetails from "./components/details/meal_details";
 import UpdateProfile from "./components/cookie/update-profile";
-import Footer from "./components/partials/footer";
+// import Footer from "./components/partials/footer";
 import CreateRecipe from "./components/recipes/create-recipe";
 import Profile from "./components/cookie/profile";
 import "./App.css"

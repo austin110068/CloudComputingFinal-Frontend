@@ -1,68 +1,81 @@
+// const USER_URL = "https://mealfortoday.herokuapp.com/api/users"
+const USER_URL = "http://localhost:4000/api/users"
 
-const USER_URL = "https://mealfortoday.herokuapp.com/api/users"
-const FAVORITE_URL = "https://mealfortoday.herokuapp.com/api/favorites"
-// const USER_URL = "http://localhost:4000/api/users"
-// const FAVORITE_URL = "http://localhost:4000/api/favorites"
+const register = async (user) => {
+  const response = await fetch(`${USER_URL}/register`, {
+    method: 'POST',
+    body: JSON.stringify(user),
+    credentials: "include",
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+  
+  return response.json();
+};
+  
+const profile = async () => {
+  const response = await fetch(`${USER_URL}/profile`, {
+    method: 'POST',
+    credentials: "include",
+  })
+  
+  return response.json();
+};
+  
+const logout = () => {
+  fetch(`${USER_URL}/logout`, {
+    method: 'GET',
+    credentials: "include"
+  })
+};
 
-const register = (user) =>
-    // console.log(user)
-    fetch(`${USER_URL}/register`, {
-      method: 'POST',
-      body: JSON.stringify(user),
-      credentials: "include",
-      headers: {
-        'content-type': 'application/json'
-      }
-    }).then(response => response.json())
+const login = async (user) => {
+  const response = await fetch(`${USER_URL}/login`, {
+    method: 'POST',
+    body: JSON.stringify(user),
+    credentials: "include",
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
 
-const profile = () =>
-    fetch(`${USER_URL}/profile`, {
-      method: 'POST',
-      credentials: "include"
-    }).then(response => response.json())
+  return response.json();
+};
+  
+const updateProfile = async (profile) => {
+  const response = await fetch(`${USER_URL}/editprofile`, {
+    method: 'POST',
+    body: JSON.stringify(profile),
+    credentials: "include",
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
 
-const logout = () =>
-    fetch(`${USER_URL}/logout`, {
-      method: 'GET',
-      credentials: "include"
-    })
-
-const login = (user) =>
-    fetch(`${USER_URL}/login`, {
-      method: 'POST',
-      body: JSON.stringify(user),
-      credentials: "include",
-      headers: {
-        'content-type': 'application/json'
-      }
-    }).then(response => response.json())
-
-const updateProfile = (profile) =>
-    fetch(`${USER_URL}/editprofile`, {
-      method: 'POST',
-      body: JSON.stringify(profile),
-      credentials: "include",
-      headers: {
-        'content-type': 'application/json'
-      }
-    }).then(response => response.json())
-
-const findAllUsers = () => {
-  return fetch(USER_URL)
-  .then(response => response.json())
+  return response.json();
+};
+  
+const findAllUsers = async () => {
+  const response = await fetch(USER_URL)
+  
+  return response.json()
 }
 
-const findUserByName = (username) => 
-    fetch(`${USER_URL}/${username}`)
-    .then(response => response.json())
+const findUserByName = async (username) => {
+  const response = await fetch(`${USER_URL}/${username}`);
+  
+  return response.json();
+};
 
+const exportDefaultObjects = {
+  register,
+  profile,
+  logout,
+  login,
+  updateProfile,
+  findAllUsers,
+  findUserByName
+}
 
-  export default {
-    register,
-    profile,
-    logout,
-    login,
-    updateProfile,
-    findAllUsers,
-    findUserByName
-  }
+export default exportDefaultObjects;

@@ -12,7 +12,7 @@ class Register extends React.Component {
         email: '',
         role: '',
         birthday: '',
-        portrait: 'https://www.cyphercoders.com/sites/default/files/default_images/default-user-icon-4.jpg'
+        portrait: 'https://cloud-computing-final-project.s3.us-west-1.amazonaws.com/default.jpg'
     }
 
     onChangeHandler = (e) => {
@@ -67,7 +67,7 @@ class Register extends React.Component {
 
                     <div className="img-profile">
                         <img className="image"
-                             src={this.state.portrait}/>
+                             src={this.state.portrait} alt=""/>
                     </div>
                     <br/>
 

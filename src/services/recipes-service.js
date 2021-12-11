@@ -1,12 +1,8 @@
 
-const RECIPES_URL = "https://mealfortoday.herokuapp.com/api/recipes"
-// const RECIPES_URL = "http://localhost:4000/api/recipes"
-// const RECIPES_URL = "http://localhost:4000/api/recipes"
-
 // const RECIPES_URL = "https://mealfortoday.herokuapp.com/api/recipes"
+const RECIPES_URL = "http://localhost:4000/api/recipes"
 
-
-export const createRecipe = (strMeal, recipe) => {
+const createRecipe = (strMeal, recipe) => {
     console.log("service" + JSON.stringify(recipe))
 
     return fetch(`${RECIPES_URL}/${strMeal}`, {
@@ -16,22 +12,34 @@ export const createRecipe = (strMeal, recipe) => {
             'content-type': 'application/json'
         }
     })
-        .then(response => response.json())
+    .then(response => response.json())
+    .catch((error) => {
+        console.log("createRecipe: ", error);
+    })
 }
 
-export const findAllRecipes = () =>
+const findAllRecipes = () => {
     fetch(RECIPES_URL)
-        .then(response => response.json())
+    .then(response => response.json())
+    .catch((error) => {
+        console.log("findAllRecipes: ", error);
+    })
+};
+    
 
-export const deleteRecipe = (name) =>
+const deleteRecipe = (name) => {
     fetch(`${RECIPES_URL}/${name}`, {
         method: "DELETE"
     })
-        .then(response => response.json())
-
-
-export default {
+    .then(response => response.json())
+    .catch((error) => {
+        console.log("deleteRecipe: ", error);
+    })
+};
+    
+const exportDefaultObjects = {
     createRecipe,
     findAllRecipes,
     deleteRecipe
 }
+export default exportDefaultObjects;

@@ -3,35 +3,35 @@ import Header from "../partials/header";
 import {Link, useParams} from "react-router-dom";
 import userService from "../../services/users-service";
 import CurrUserContent from "./publicContent"
-import PrivateContent from './privateContent';
 import favoritesService from '../../services/favorites-service';
-import mealsService from '../../services/meals-service';
 import FavoritesForUser from '../favorites/favoritesForUser';
 
 const Profile = () => {
     const {username} = useParams()
-    // console.log(username)
     const [currentUser, setCurrentUser] = useState([])
     const [otherUser, setOtherUser] = useState([])
     const [favorates, setFavorates] = useState([])
     const [isFavo, setIsFavo] = useState(true)
-    // const[detail, setDetail] = useState()
-    // const [portrait, setPortrait] = useState("https://www.cyphercoders.com/sites/default/files/default_images/default-user-icon-4.jpg")
+    
+    console.log("otheruser: ", otherUser);
+    console.log("Currentuser: ", currentUser);
+
     useEffect(() => {
         userService.profile()
             .then(currUser => {
-                // console.log(currUser)
                 setCurrentUser(currUser)
             })
-    },[])
+    }, [])
+
     useEffect(() => {
         userService.findUserByName(username)
             .then(otherUser => {
-                setOtherUser(otherUser[0])
+                console.log("fuck: ", otherUser);
+                setOtherUser(otherUser["Item"])
             })
-    },[])
+    }, [])
+
     useEffect(() => {
-        // console.log(username)
         favoritesService.findAllFavoritesForAUser(username)
             .then(favoratesItem => {
                 setFavorates(favoratesItem)
@@ -46,7 +46,7 @@ const Profile = () => {
                 <div className="top">
                     {
                         currentUser.username === username &&
-                        <CurrUserContent currentUser = {otherUser} />
+                        <CurrUserContent currentUser={otherUser} />
                     }
                     {
                         currentUser.username !== username &&
@@ -54,7 +54,7 @@ const Profile = () => {
                         <div style={{display: 'flex', justifyContent: "space-around", margin: '18px 0px'}}>
                             <div>
                                 <img className="image"
-                                    src={otherUser.portrait}/>
+                                    src={otherUser.portrait} alt=""/>
                             </div>
                             <div>
                                 <div style={{display: 'flex', justifyContent: "space-between", width: "150%"}}>

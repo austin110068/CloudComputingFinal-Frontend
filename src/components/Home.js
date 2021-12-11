@@ -5,36 +5,35 @@ import Header from "./partials/header";
 import './home.css'
 import mealsService from "../services/meals-service";
 import userService from '../services/users-service';
-import Footer from "./partials/footer";
+// import Footer from "./partials/footer";
 
 const Home = () => {
   const [recipes, setRecipes] = useState({meals:[]});
   const [index, setIndex] = useState(0);
-  // const [user, setUser] = useState("")
-  const [currentUser, setCurrentUser] = useState([])
+
+  const [currentUser, setCurrentUser] = useState([]);
+  console.log("currentUSER: ", currentUser);
   useEffect(() => {
     userService.profile()
-        .then(currUser => {
-          setCurrentUser(currUser)
-        })
-  },[])
+      .then(currUser => {
+        setCurrentUser(currUser.Items[0]);
+      })
+  }, [])
 
 // check whether the user is logged in
   useEffect(() => {
-    { currentUser &&
-    mealsService.findLastedRecipes()
-    .then(recipes => {
-      setRecipes(recipes)
-    })
-    }
-    { !currentUser &&
-    mealsService.find10RandomRecipes()
-    .then((recipes) => {
-      setRecipes(recipes)
-    })
-    .then(console.log(1))
-    }
-  }, [])
+    if (currentUser) {
+      mealsService.findLastedRecipes()
+        .then((recipes) => {
+          setRecipes(recipes);
+        })
+    } else {
+      mealsService.find10RandomRecipes()
+        .then((recipes) => {
+          setRecipes(recipes);
+        });
+      }
+  }, []);
 
 
   useEffect(() => {
@@ -58,18 +57,6 @@ const Home = () => {
       <>
         <Header/>
         <div className="container-fluid mt-5">
-          {/*<h1>Home</h1>*/}
-          {/*  <div>*/}
-          {/*      <Link to={"/search"}>*/}
-          {/*          Search*/}
-          {/*      </Link>*/}
-          {/*  </div>*/}
-          {/*<div>*/}
-          {/*    <Link to={"/register"}>*/}
-          {/*        Register*/}
-          {/*    </Link>*/}
-          {/*</div>*/}
-
           <section className="section">
             <div className="title">
               {
