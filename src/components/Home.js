@@ -10,8 +10,6 @@ const Home = () => {
   const [index, setIndex] = useState(0);
   const [currentUser, setCurrentUser] = useState([]);
   
-  console.log("home: ", currentUser);
-
   useEffect(() => {
     userService.profile()
       .then(currUser => {

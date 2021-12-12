@@ -22,14 +22,12 @@ const MealDetails = () => {
   const {idMeal, searchTitle} = useParams();
   const [results, setResults] = useState({meals: []})
   const [isFavorite, setIsFavorite] = useState(false)
-  const [similarDishesCount, setSimilarDishesCount] = useState(0)
   const [currentUser, setCurrentUser] = useState([])
-  const [postByUser, setPostByUser] = useState([])
-  const [liked, setIsLiked] = useState(false)
 
   
   console.log("currentUser: ", currentUser);
   console.log("isFav: ", isFavorite);
+  
 //  useEffect(() => {
 //    mealsService.findCreatedUserForRecipe()
 //      .then(user => {
@@ -54,9 +52,6 @@ const MealDetails = () => {
       setCurrentUser(currUser.Items[0])
     })
 
-  }, [])
-
-  useEffect(() => {
     findMealById();
   }, [])
 

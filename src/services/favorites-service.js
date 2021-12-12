@@ -55,8 +55,9 @@ const findFavoriteForUserAndMealID = async (username, mealId) => {
 //     })
 //     .then(response => response.json())
 
-const deleteFavorite = async (username, mealId) => {
-  const info = { "username": username, "mealId": mealId };
+const deleteFavorite = async (info) => {
+  let mealId = info.recipeId;
+  let username = info.username;
   const response = await fetch(`${FAVORITE_URL}/${mealId}/${username}`, {
     method:'DELETE',
     headers: {
