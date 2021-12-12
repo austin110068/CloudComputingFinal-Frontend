@@ -4,14 +4,27 @@ import favoritesService from "../../services/favorites-service"
 
 const UsersList = (props) => {
   const [users, setUsers] = useState([]);
+  const currUser = { "recipeId": props.mealId, "username": props.currUsername };
 
   useEffect(() => {
     favoritesService.findAllUsersForAMeal(props.mealId)
     .then((users) => {
       setUsers(users.Items)
     })
-  }, [props.isFavorite])
+  }, [])
 
+  useEffect(() => {
+    const filtered = users.filter(e => e.username === currUser.username);
+    if (props.isFavorite) {
+      if (filtered.length === 0) {
+        setUsers([...users, currUser]);
+      }
+    } else {
+      if (filtered.length !== 0) {
+        setUsers(users.filter(e => e.username !== currUser.username));
+      }
+    }
+  }, [props.isFavorite])
 
   return(
       <div>

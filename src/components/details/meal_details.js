@@ -24,27 +24,12 @@ const MealDetails = () => {
   const [isFavorite, setIsFavorite] = useState(false)
   const [currentUser, setCurrentUser] = useState([])
 
-  
-  // console.log("currentUser: ", currentUser);
-  // console.log("isFav: ", isFavorite);
-
 //  useEffect(() => {
 //    mealsService.findCreatedUserForRecipe()
 //      .then(user => {
 //          setPostByUser(user)
 //      })
 //  },[])
-
-  // useEffect(() => {
-  //   const data = localStorage.getItem('isLiked');
-  //   if (data) {
-  //     setIsFavorite(JSON.parse(data));
-  //   }
-  // }, [])
-  //
-  // useEffect(() => {
-  //   localStorage.setItem('isLiked', JSON.stringify(isFavorite))
-  // })
 
   useEffect(() => {
     userService.profile()
@@ -81,7 +66,6 @@ const MealDetails = () => {
   }
 
   const isFavoriteHandler = (set) => {
-    console.log("info: { ", currentUser.username, " | ", idMeal, " }")
     if (set) {
       setIsFavorite(true)
       favoritesService.addFavorite({username: currentUser.username, recipeId: idMeal});
