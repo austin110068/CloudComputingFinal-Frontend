@@ -25,8 +25,8 @@ const MealDetails = () => {
   const [currentUser, setCurrentUser] = useState([])
 
   
-  console.log("currentUser: ", currentUser);
-  console.log("isFav: ", isFavorite);
+  // console.log("currentUser: ", currentUser);
+  // console.log("isFav: ", isFavorite);
 
 //  useEffect(() => {
 //    mealsService.findCreatedUserForRecipe()
@@ -70,8 +70,6 @@ const MealDetails = () => {
   }
 
   const checkIsFavorite = (username, mealId) => {
-    console.log("username: ", username);
-    console.log("mealId: ", mealId);
     favoritesService.findFavoriteForUserAndMealID(username, mealId)
     .then(res => {
       if (Object.keys(res.Items).length === 1) {
@@ -86,12 +84,12 @@ const MealDetails = () => {
     console.log("info: { ", currentUser.username, " | ", idMeal, " }")
     if (set) {
       setIsFavorite(true)
-      favoritesService.addFavorite({username: currentUser.username, recipeId: idMeal})
+      favoritesService.addFavorite({username: currentUser.username, recipeId: idMeal});
       // favoritesService.addFavoriteToUser(currentUser.username, idMeal).then()
 
     } else {
       setIsFavorite(false)
-      favoritesService.deleteFavorite({username: currentUser.username, recipeId: idMeal})
+      favoritesService.deleteFavorite({username: currentUser.username, recipeId: idMeal});
     }
   }
 
@@ -106,7 +104,7 @@ const MealDetails = () => {
           <h1>{meal.strMeal}</h1>
           <div>
             Liked by
-            <UsersList mealId={idMeal} />
+            <UsersList mealId={idMeal} isFavorite={isFavorite} currUsername={currentUser.username}/> 
             <br/>
 
           </div>

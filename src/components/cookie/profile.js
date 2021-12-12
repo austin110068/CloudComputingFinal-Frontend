@@ -21,23 +21,18 @@ const Profile = () => {
         userService.profile()
             .then(currUser => {
                 setCurrentUser(currUser.Items[0])
-            })
-    }, [])
+            });
 
-    useEffect(() => {
         userService.findUserByName(username)
             .then(otherUser => {
-                console.log("fefe", otherUser);
                 setOtherUser(otherUser.Item)
-            })
-    }, [])
-
-    useEffect(() => {
+            });
+        
         favoritesService.findAllFavoritesForAUser(username)
             .then(favoritesItem => {
-                setfavorites(favoritesItem)
-            })
-    }, [])
+                setfavorites(favoritesItem.Items)
+            });
+    }, []);
 
     return (
         <>
@@ -90,7 +85,7 @@ const Profile = () => {
                                 otherUser.role !== "Chef" &&
                                 <>
                                     <div className="col-12 each-cell">
-                                    <Link className={`bth ${isFavo? 'select': 'not-select'}`} onClick={() => setIsFavo(true)}>
+                                        <Link className={`bth ${isFavo? 'select': 'not-select'}`} onClick={() => setIsFavo(true)}>
                                             Your Favorites                            
                                         </Link>
                                     </div>

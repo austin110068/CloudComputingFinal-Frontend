@@ -5,7 +5,7 @@ import mealsService from '../../services/meals-service';
 const FavoritesForUser = ({favorite}) => {
   const { username } = useParams();
   const [detail, setDetail] = useState();
-
+  console.log("detail: ", detail);
   useEffect(() => {
       mealsService.findMealById(favorite.recipeId)
       .then(detail => {
