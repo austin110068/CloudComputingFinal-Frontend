@@ -27,7 +27,7 @@ const MealDetails = () => {
   
   console.log("currentUser: ", currentUser);
   console.log("isFav: ", isFavorite);
-  
+
 //  useEffect(() => {
 //    mealsService.findCreatedUserForRecipe()
 //      .then(user => {
@@ -106,7 +106,7 @@ const MealDetails = () => {
           <h1>{meal.strMeal}</h1>
           <div>
             Liked by
-            {/* <UsersList mealId={idMeal} /> */}
+            <UsersList mealId={idMeal} />
             <br/>
 
           </div>
@@ -128,10 +128,6 @@ const MealDetails = () => {
           {/*Liked by*/}
           {/*<Link to={`/users/favorite/${idMeal}`}> Users</Link>*/}
 
-
-          {/*{currentUser.username && !isFavorite && <i onClick={() => setIsFavorite(true)} className="far fa-star"></i>}*/}
-          {/*{currentUser.username && isFavorite && <i onClick={() => setIsFavorite(false)} className="fas fa-star"></i>}*/}
-
           <img className="mealThumb" src={meal.strMealThumb} width={500} alt=""/>
 
           {showBriefInfo(meal)}
@@ -141,22 +137,13 @@ const MealDetails = () => {
 
           <h2>Instructions</h2>
           {showInstructions(meal)}
-
-          {/*<h2>Reviews</h2>*/}
-          {/*{reviews(meal)}*/}
-
-          {/*<h2>Similar Dishes</h2>*/}
-          {/*{displaySimilarDishes(similarDishesCount, results, setSimilarDishesCount, searchTitle, meal)}*/}
-
-          <br/>
-          
           <br/>
           <br/>
           <br/>
           <br/>
           <br/>
           <br/>
-
+          <br/>
         </div>
       </>
   )

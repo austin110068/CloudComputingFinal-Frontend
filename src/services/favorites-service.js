@@ -49,11 +49,6 @@ const findFavoriteForUserAndMealID = async (username, mealId) => {
   return response.json();
 }
 
-// export const deleteCourse = (courseId) =>
-//     fetch(`${COURSES_URL}/${courseId}`, {
-//       method: 'DELETE'
-//     })
-//     .then(response => response.json())
 
 const deleteFavorite = async (info) => {
   let mealId = info.recipeId;

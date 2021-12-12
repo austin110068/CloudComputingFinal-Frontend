@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
 import favoritesService from "../../services/favorites-service"
 
-const UsersList = ({mealId}) => {
+const UsersList = (props) => {
   const [users, setUsers] = useState([]);
 
   // useEffect(() => {
@@ -13,9 +13,9 @@ const UsersList = ({mealId}) => {
   // }, [])
 
   useEffect(() => {
-    favoritesService.findAllUsersForAMeal(mealId)
+    favoritesService.findAllUsersForAMeal(props.mealId)
     .then((users) => {
-      setUsers(users)
+      setUsers(users.Items)
     })
   }, [])
 
