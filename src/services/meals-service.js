@@ -33,7 +33,7 @@ const find10RandomRecipes = async () => {
   return response.json();
 }
 
-const findLastedRecipes = async () => {
+const findLatestRecipes = async () => {
   const response = await fetch(`https://www.themealdb.com/api/json/v2/9973533/latest.php/`)
   
   return response.json();
@@ -52,7 +52,7 @@ const exportDefaultObjects = {
   findMealByCategory,
   findAllCategories,
   find10RandomRecipes,
-  findLastedRecipes,
+  findLatestRecipes,
   findRecipesFromMongoDB
 }
 

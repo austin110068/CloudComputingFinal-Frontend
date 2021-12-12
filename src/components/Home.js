@@ -10,6 +10,8 @@ const Home = () => {
   const [index, setIndex] = useState(0);
   const [currentUser, setCurrentUser] = useState([]);
   
+  console.log("home: ", currentUser);
+
   useEffect(() => {
     userService.profile()
       .then(currUser => {
@@ -19,7 +21,7 @@ const Home = () => {
 
   useEffect(() => {
     if (currentUser) {
-      mealsService.findLastedRecipes()
+      mealsService.findLatestRecipes()
         .then((recipes) => {
           setRecipes(recipes);
         })
@@ -29,7 +31,7 @@ const Home = () => {
           setRecipes(recipes);
         });
       }
-  }, []);
+  }, [currentUser]);
 
 
   useEffect(() => {
@@ -56,12 +58,12 @@ const Home = () => {
           <section className="section">
             <div className="title">
               {
-                currentUser && <h2>
+                Object.keys(currentUser).length !== 0 && <h2>
                   <span>/</span> Welcome {currentUser.username}! Here are our latest recipes!
                 </h2>
               }
               {
-                !currentUser&& <h2>
+                Object.keys(currentUser).length === 0 && <h2>
                   <span>/</span> Welcome! Want to try something new?
                 </h2>
               }

@@ -9,7 +9,6 @@ const Header = () => {
     useEffect(() => {
       userService.profile()
         .then(profile => {
-          console.log("testing: ", profile);
           setCurrentUser(profile.Items[0]);
         })
         .catch(error => {

@@ -56,8 +56,13 @@ const findFavoriteForUserAndMealID = async (username, mealId) => {
 //     .then(response => response.json())
 
 const deleteFavorite = async (username, mealId) => {
+  const info = { "username": username, "mealId": mealId };
   const response = await fetch(`${FAVORITE_URL}/${mealId}/${username}`, {
     method:'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(info),
   })
   
   return response.json();
