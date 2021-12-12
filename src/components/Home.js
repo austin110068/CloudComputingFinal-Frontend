@@ -1,18 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from "react-router-dom";
 import Header from "./partials/header";
-// import meals from "./recipes";
 import './home.css'
 import mealsService from "../services/meals-service";
 import userService from '../services/users-service';
-// import Footer from "./partials/footer";
 
 const Home = () => {
   const [recipes, setRecipes] = useState({meals:[]});
   const [index, setIndex] = useState(0);
-
   const [currentUser, setCurrentUser] = useState([]);
-  console.log("currentUSER: ", currentUser);
+  
   useEffect(() => {
     userService.profile()
       .then(currUser => {
@@ -20,7 +17,6 @@ const Home = () => {
       })
   }, [])
 
-// check whether the user is logged in
   useEffect(() => {
     if (currentUser) {
       mealsService.findLastedRecipes()
@@ -103,9 +99,7 @@ const Home = () => {
               </button>
             </div>
           </section>
-
         </div>
-        {/*<Footer/>*/}
       </>
   )
 }

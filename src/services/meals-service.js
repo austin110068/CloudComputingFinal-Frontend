@@ -1,51 +1,51 @@
-export const findMealByTitle = (title) =>
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${title}`)
-    .then(response => response.json())
-
-const findMealById = (idMeal) =>
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`)
-    .then(response => response.json())
-
-const findMealByIdFromLocal = (idMeal) =>
-
-    fetch(`http://localhost:4000/api/recipes/id/${idMeal}`)
-  // fetch(`https://mealfortoday.herokuapp.com/api/recipes/id/${idMeal}`)
-
-    .then(response => response.json())
-
-const findMealByCategory = (category) =>
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
-    .then(response => response.json())
-
-const findAllCategories = () => {
-  fetch(`https://www.themealdb.com/api/json/v1/1/list.php?c=list`)
-  .then(response => response.json())
+const findMealByTitle = async (title) => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${title}`);
+  
+  return response.json();
 }
 
-const find10RandomRecipes = () => {
-  return fetch(`https://www.themealdb.com/api/json/v2/9973533/randomselection.php/`)
-    .then(response =>
-      response.json()
-    )
+const findMealById = async (idMeal) => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`);
+  return response.json();
 }
 
-const findLastedRecipes = () => {
-  return fetch(`https://www.themealdb.com/api/json/v2/9973533/latest.php/`)
-  .then(response =>
-    response.json()
-  )
+const findMealByIdFromLocal = async (idMeal) => {
+  const response = await fetch(`http://localhost:4000/api/recipes/id/${idMeal}`);
+  
+  return response.json();
 }
 
-const findRecipesFromMongoDB = (title) => {
-  return fetch(`http://localhost:4000/api/recipes/${title}`)
-  // return fetch(`https://mealfortoday.herokuapp.com/api/recipes/${title}`)
+const findMealByCategory = async (category) => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
 
-  .then(response => response.json())
-
+  return response.json();
 }
 
+const findAllCategories = async () => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?c=list`);
+  
+  return response.json();
+}
 
-export default {
+const find10RandomRecipes = async () => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v2/9973533/randomselection.php/`);
+  
+  return response.json();
+}
+
+const findLastedRecipes = async () => {
+  const response = await fetch(`https://www.themealdb.com/api/json/v2/9973533/latest.php/`)
+  
+  return response.json();
+}
+
+const findRecipesFromMongoDB = async (title) => {
+  const response = await fetch(`http://localhost:4000/api/recipes/${title}`);
+
+  return response.json();
+}
+
+const exportDefaultObjects = {
   findMealByTitle,
   findMealById,
   findMealByIdFromLocal,
@@ -55,3 +55,5 @@ export default {
   findLastedRecipes,
   findRecipesFromMongoDB
 }
+
+export default exportDefaultObjects;

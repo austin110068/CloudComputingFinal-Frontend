@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import Header from "../partials/header";
-import {Link, useParams} from "react-router-dom";
-import userService from "../../services/users-service";
+import React from 'react'
+import { Link } from "react-router-dom";
 
 const PublicContent = ({currentUser}) => {
+    console.log("public content: ", currentUser);
     return(
         // <div>
         <div style={{display: 'flex', justifyContent: "space-around", margin: '18px 0px'}}>

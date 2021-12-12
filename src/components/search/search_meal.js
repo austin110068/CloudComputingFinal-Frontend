@@ -8,14 +8,14 @@ import Footer from "../partials/footer";
 import "./search.css"
 
 const SearchMeals = () => {
-  const {title} = useParams()
+  const { title } = useParams()
   const [searchTitle, setSearchTitle] = useState("")
   const [results, setResults] = useState({meals: []})
   const [resultsDB, setResultsDB] = useState()
   const [cardId, setCardId] = useState("")
 
   const history = useHistory()
-
+  console.log("title: ", title);
   useEffect(() => {
     setSearchTitle(title)
     if (!title || title === "undefined") {

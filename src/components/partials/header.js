@@ -5,13 +5,12 @@ import userService from "../../services/users-service";
 
 const Header = () => {
     const [currentUser, setCurrentUser] = useState([])
+
     useEffect(() => {
       userService.profile()
         .then(profile => {
-          console.log("profile: ", profile)
-          if (Object.keys(profile).length !== 0) {
-            setCurrentUser(profile);
-          }
+          console.log("testing: ", profile);
+          setCurrentUser(profile.Items[0]);
         })
         .catch(error => {
           console.log("Header: ", error);

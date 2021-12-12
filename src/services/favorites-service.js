@@ -1,19 +1,20 @@
-// const FAVORITE_URL = "http://localhost:4000/api/favorites"
-// const USERS_URL = "http://localhost:4000/api/users"
+// Local Development
+const FAVORITE_URL = "http://localhost:4000/api/favorites"
 
+// Production Development
+// const FAVORITE_URL = "https://mealfortoday.herokuapp.com/api/favorites"
 
-const FAVORITE_URL = "https://mealfortoday.herokuapp.com/api/favorites"
-const USERS_URL = "https://mealfortoday.herokuapp.com/api/users"
-
-
-const addFavorite = (info) =>
-    fetch(FAVORITE_URL, {
+const addFavorite = async (info) => {
+    const response = await fetch(FAVORITE_URL, {
         method: 'POST',
         body: JSON.stringify(info),
         headers: {
             'content-type': 'application/json'
         }
-    }).then(response => response.json())
+    });
+
+    return response.json();
+  }
 
 // const addFavoriteToUser = (username, mealId) =>
 //     fetch(`${FAVORITE_URL}/${username}`, {
@@ -24,43 +25,43 @@ const addFavorite = (info) =>
 //         }
 //     }).then(response => response.json())
 
-
-const findAllUsersForAMeal = (mealId) => {
-    return fetch(`${FAVORITE_URL}/id/${mealId}`)
-        .then(response => response.json())
+const findAllUsersForAMeal = async (mealId) => {
+  const response = await fetch(`${FAVORITE_URL}/id/${mealId}`);
+  
+  return response.json();
 }
 
-const findAllFavoritesForAUser = (username) => {
-    return fetch(`${FAVORITE_URL}/${username}`)
-        .then(response => response.json())
-        // .then(res=>console.log(res))
-
+const findAllFavoritesForAUser = async (username) => {
+  const response = await fetch(`${FAVORITE_URL}/${username}`);
+  
+  return response.json();
 }
 
-const findAllFavorites = () => {
-    fetch(FAVORITE_URL)
-        .then(response => response.json())
+const findAllFavorites = async () => {
+  const response = await fetch(FAVORITE_URL);
+
+  return response.json();
 }
 
-const findFavoriteForUserAndMealID = (username, mealId) => {
-   return fetch(`${FAVORITE_URL}/${mealId}/${username}`)
-        .then(response => response.json())
-
+const findFavoriteForUserAndMealID = async (username, mealId) => {
+  const response = await fetch(`${FAVORITE_URL}/${mealId}/${username}`);
+  
+  return response.json();
 }
-//
+
 // export const deleteCourse = (courseId) =>
 //     fetch(`${COURSES_URL}/${courseId}`, {
 //       method: 'DELETE'
 //     })
 //     .then(response => response.json())
 
-const deleteFavorite = (username, mealId) => {
-  fetch(`${FAVORITE_URL}/${mealId}/${username}`, {
-    method:'DELETE'
+const deleteFavorite = async (username, mealId) => {
+  const response = await fetch(`${FAVORITE_URL}/${mealId}/${username}`, {
+    method:'DELETE',
   })
-  .then(response => response.json())
+  
+  return response.json();
 }
-
 
 // const addFavoriteToUser = (username, mealId) =>
 //     fetch(`${FAVORITE_URL}/${username}`, {
@@ -71,12 +72,14 @@ const deleteFavorite = (username, mealId) => {
 //         }
 //     }).then(response => response.json())
 
-export default {
-    addFavorite,
-    // addFavoriteToUser,
+const exportDefaultObjects = {
+  addFavorite,
+  // addFavoriteToUser,
   findAllUsersForAMeal,
-    findAllFavoritesForAUser,
-    findAllFavorites,
-    findFavoriteForUserAndMealID,
+  findAllFavoritesForAUser,
+  findAllFavorites,
+  findFavoriteForUserAndMealID,
   deleteFavorite
 }
+
+export default exportDefaultObjects;

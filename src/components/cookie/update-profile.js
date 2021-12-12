@@ -1,11 +1,9 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Header from "../partials/header";
-import {Link, useParams} from "react-router-dom";
 import userService from '../../services/users-service';
-import Footer from "../partials/footer";
 
-class UpdateProfile extends React.Component{
-    constructor(){
+class UpdateProfile extends React.Component {
+    constructor() {
         super();
         this.state = {
             username: '',
@@ -15,16 +13,14 @@ class UpdateProfile extends React.Component{
             area: '',
             bio: '',
             flavor: '',
-            portrait: 'https://www.cyphercoders.com/sites/default/files/default_images/default-user-icon-4.jpg'
+            portrait: 'https://cloud-computing-final-project.s3.us-west-1.amazonaws.com/default.jpg'
         }
     }
     
-
     updateProps = (username) => {
-        // userService.profile()
         userService.findUserByName(username)
             .then((profile) => {
-                profile = profile[0]
+                profile = profile.Item;
                 this.setState({
                     username: profile.username,
                     role: profile.role,
@@ -73,7 +69,6 @@ class UpdateProfile extends React.Component{
     }
 
     render() {
-
         return (
             <>
                 <Header/>
@@ -82,20 +77,15 @@ class UpdateProfile extends React.Component{
                     {/* <br/> */}
                     <div className="img-profile">
                         <img className="image"
-                             src={this.state.portrait}/>
+                             src={this.state.portrait} alt=""/>
                     </div>
                     <br/>
-                    {/* <div>
-                        <input style={{display: 'none'}} type="file"
-                        onChange={this.fileSelecterHandler}
-                        ref={fileInput => this.fileInput = fileInput}
-                        />
-                        <button className="btn edit-profile-button" onClick={() => this.fileInput.click()}>Pick Image</button>
-                    </div> */}
+
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-3 col-form-label">Username</label>
                         <div className="col-sm-9">
-                            <input value={this.state.username}
+                            <input 
+                                value={this.state.username}
                                 type="text" name="username" id="username" className="form-control"
                                 readOnly/>
                         </div>
@@ -104,28 +94,32 @@ class UpdateProfile extends React.Component{
                     <div className="form-group row">
                         <label htmlFor="role" className="col-sm-3 col-form-label">Role</label>
                         <div className="col-sm-9">
-                            <input value={this.state.role}
-                                   type="text" name="role" id="role" className="form-control"
-                                   readOnly/>
+                            <input 
+                                value={this.state.role}
+                                type="text" name="role" id="role" className="form-control"
+                                readOnly
+                            />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label htmlFor="portrait" className="col-sm-3 col-form-label">Profile Photo</label>
                         <div className="col-sm-9">
-                            <input value={this.state.portrait}
-                            onChange={e => this.onChangeHandler(e)}
+                            <input 
+                                value={this.state.portrait}
+                                onChange={e => this.onChangeHandler(e)}
                                 type="text" name="portrait" id="portrait" className="form-control"
-                                />
+                            />
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label htmlFor="email" className="col-sm-3 col-form-label">Email</label>
                         <div className="col-sm-9">
-                            <input value={this.state.email}
-                                   onChange={e => this.onChangeHandler(e)}
-                                   type="text" name="email" id="email" className="form-control"
+                            <input 
+                                value={this.state.email}
+                                onChange={e => this.onChangeHandler(e)}
+                                type="text" name="email" id="email" className="form-control"
                             />
                         </div>
                     </div>
@@ -179,22 +173,6 @@ class UpdateProfile extends React.Component{
                         </div>
                     </div>
 
-                    {/*{*/}
-                    {/*    this.state.role === "Chef" &&*/}
-                    {/*    <div className="form-group row">*/}
-                    {/*        <label className="col-sm-2 col-form-label"/>*/}
-                    {/*        <div className="col-sm-12">*/}
-                    {/*            <Link to="/create">*/}
-                    {/*                <button className="btn btn-success form-control"*/}
-                    {/*                        onClick={this.updateHandle}>*/}
-                    {/*                    Create Recipe*/}
-                    {/*                </button>*/}
-                    {/*            </Link>*/}
-
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-
-                    {/*}*/}
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"/>
                         <div className="col-sm-12">

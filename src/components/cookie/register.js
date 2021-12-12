@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import userService from '../../services/users-service';
-import {Link, useHistory} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "../partials/header";
-import Footer from "../partials/footer";
 
 class Register extends React.Component {
     state = {
@@ -60,7 +59,6 @@ class Register extends React.Component {
         return(
             <>
                 <Header/>
-
                 <div className="container">
                     <h1>Register</h1>
                     <br/>
@@ -150,9 +148,7 @@ class Register extends React.Component {
                             <button className="btn btn-primary form-control"
                                   onClick={() => this.onSubmit(this.state)}>
                                 Register
-
                             </button>
-
                             <div>
                                  Already is a member?
                                  <Link to="/login">
@@ -161,10 +157,8 @@ class Register extends React.Component {
 
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </>
         )
     }

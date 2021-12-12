@@ -7,36 +7,36 @@ import favoritesService from '../../services/favorites-service';
 import FavoritesForUser from '../favorites/favoritesForUser';
 
 const Profile = () => {
-    const {username} = useParams()
+    const { username } = useParams()
     const [currentUser, setCurrentUser] = useState([])
     const [otherUser, setOtherUser] = useState([])
-    const [favorates, setFavorates] = useState([])
+    const [favorites, setfavorites] = useState([])
     const [isFavo, setIsFavo] = useState(true)
     
     console.log("otheruser: ", otherUser);
     console.log("Currentuser: ", currentUser);
+    console.log("userparams: ", username);
 
     useEffect(() => {
         userService.profile()
             .then(currUser => {
-                setCurrentUser(currUser)
+                setCurrentUser(currUser.Items[0])
             })
     }, [])
 
     useEffect(() => {
         userService.findUserByName(username)
             .then(otherUser => {
-                console.log("fuck: ", otherUser);
-                setOtherUser(otherUser["Item"])
+                console.log("fefe", otherUser);
+                setOtherUser(otherUser.Item)
             })
     }, [])
 
     useEffect(() => {
         favoritesService.findAllFavoritesForAUser(username)
-            .then(favoratesItem => {
-                setFavorates(favoratesItem)
-            }
-            )
+            .then(favoritesItem => {
+                setfavorites(favoritesItem)
+            })
     }, [])
 
     return (
@@ -100,11 +100,10 @@ const Profile = () => {
                     </div>
                     <div className="lower">
                         <div className="row card-area">
-                        {/* {console.log(favorates)} */}
                         {
-                            favorates && isFavo &&      
-                            favorates.map(favorate =>     
-                                <FavoritesForUser favorite={favorate}/>
+                            favorites && isFavo &&      
+                            favorites.map(favorite =>     
+                                <FavoritesForUser favorite={favorite}/>
                             )   
 
                         }

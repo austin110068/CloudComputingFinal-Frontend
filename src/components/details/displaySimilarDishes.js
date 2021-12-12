@@ -1,4 +1,4 @@
-import react from 'react'
+import React from 'react'
 import SearchCard from "../search/search_card"
 
 const displaySimilarDishes = (similarDishesCount, results, setSimilarDishesCount, searchTitle, meal) => {

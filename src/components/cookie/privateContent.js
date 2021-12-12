@@ -9,7 +9,7 @@ const PrivateContent = ({otherUser}) => {
         <div style={{display: 'flex', justifyContent: "space-around", margin: '18px 0px'}}>
             <div>
                 <img className="image"
-                    src={otherUser.portrait}/>
+                    src={otherUser.portrait} alt=""/>
             </div>
             <div>
                 <div style={{display: 'flex', justifyContent: "space-between", width: "150%"}}>

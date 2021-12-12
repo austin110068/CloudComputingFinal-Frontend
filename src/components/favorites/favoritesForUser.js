@@ -3,8 +3,9 @@ import {useParams, Link} from "react-router-dom"
 import mealsService from '../../services/meals-service';
 
 const FavoritesForUser = ({favorite}) => {
-  const {username} = useParams()
-  const[detail, setDetail] = useState()
+  const { username } = useParams();
+  const [detail, setDetail] = useState();
+
   useEffect(() => {
       mealsService.findMealById(favorite.recipeId)
       .then(detail => {
@@ -14,7 +15,7 @@ const FavoritesForUser = ({favorite}) => {
 
   return (
       <div className="card" style={{width: "19.3rem"}}>
-          {detail&&
+          {detail &&
             <>
               <img src={detail.strMealThumb} class="card-img-top" alt="..."/>
                 <div className="card-body">
